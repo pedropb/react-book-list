@@ -1,11 +1,11 @@
 import React from 'react';
 
-const BookDetail = () =>
+const BookDetail = ( { book } ) =>
     (
-        <div class='col-sm-8'>
+        <div className='col-sm-8'>
             <h3>Details for:</h3>
-            <div>Title: Some title</div>
-            <div>Pages: # of pages</div>
+            <div>Title: {book ? book.title : ''}</div>
+            <div>Pages: {book ? book.pages : ''} </div>
         </div>
     );
 
