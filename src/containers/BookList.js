@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import BookDetail from '../components/BookDetail';
 import BookData from '../data/BooksData';
+import getActiveBook from '../selectors';
+import selectBook from '../actions';
 
 class BookList extends Component {
     constructor(props) {
@@ -9,24 +13,14 @@ class BookList extends Component {
         this.data = new BookData();
     }
 
-    state = {
-        activeBook: null
-    }
-
-    selectBook(book) {
-        this.setState({
-            activeBook: book
-        });
-    }
-
     render() {
         return (
-            <div class='row'>
+            <div className='row'>
                 <ul className='list-group col-sm-4'>
                     {this.renderList()}
                 </ul>
                 <BookDetail
-                    book={ this.state.activeBook }
+                    book={ this.props.activeBook }
                 />
             </div>
         );
@@ -38,7 +32,7 @@ class BookList extends Component {
         return books.map((book) => (
             <li
                 key={book.title}
-                onClick={() => this.selectBook(book)}
+                onClick={() => this.props.selectBook(book)}
                 className='list-group-item'
             >
                 {book.title}
@@ -47,4 +41,6 @@ class BookList extends Component {
     }
 }
 
-export default BookList;
+const mapDispatchToProps = (dispatch) => bindActionCreators({ selectBook }, dispatch)
+
+export default connect(getActiveBook, mapDispatchToProps)(BookList);

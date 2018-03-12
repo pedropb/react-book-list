@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import BookList from './containers/BookList';
+import BookListApp from './reducers';
 
 class App extends Component {
   render() {
     return (
-      <div className='container'>
+      <Provider store={createStore(BookListApp)}>
         <BookList />
-      </div>
+      </Provider>
     );
   }
 }
