@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import BookList from './components/BookList';
-import BookDetail from './components/BookDetail';
-import logo from './logo.svg';
+import BookList from './containers/BookList';
 import './App.css';
 
 class App extends Component {
